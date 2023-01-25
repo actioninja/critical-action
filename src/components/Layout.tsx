@@ -5,6 +5,7 @@ const containerStyle = {
   maxWidth: "800px",
   margin: "auto",
   fontFamily: "Fira Sans",
+  fontSize: 18,
 };
 
 const bodyStyle = {

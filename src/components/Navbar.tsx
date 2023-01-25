@@ -1,39 +1,41 @@
 import * as React from "react";
+import styled from "styled-components";
 import { Link } from "gatsby";
 
-const spacerStyle = {
-  padding: "0 5px",
-};
-const Spacer = () => {
-  return <span style={spacerStyle}>|</span>;
-};
+const SpacerNoContent = styled.span`
+  padding: 0 5px;
+`;
 
-const navbarStyle = {
-  padding: "10px",
-  display: "flex",
-  alignItems: "flex-end",
-  borderBottom: "2px solid black",
-  fontFamily: "Inconsolata",
-  fontSize: 30,
-};
+const Spacer = (props: any) => <SpacerNoContent>|</SpacerNoContent>;
 
-const navSectionStyle = {
-  marginLeft: "10px",
-};
+const NavbarContainer = styled.nav`
+  padding: 10px;
+  display: flex;
+  position: relative;
+  align-items: flex-end;
+  border-bottom: 2px solid black;
+  font-family: Inconsolata, monospace;
+  font-size: 30px;
+`;
+
+const NavbarLink = styled(Link)`
+  color: ${(props) => props.theme.colors.highlight};
+  &:visited {
+    color: ${(props) => props.theme.colors.highlight};
+  }
+`;
 
 const Navbar = () => {
   return (
-    <div style={navbarStyle}>
-      <nav>
-        <Link to="/">Critical Action</Link>
-        <Spacer />
-        <Link to="/blog">Blog</Link>
-        <Spacer />
-        <Link to="/projects">Projects</Link>
-        <Spacer />
-        <Link to="/cool_stuff">Cool Stuff</Link>
-      </nav>
-    </div>
+    <NavbarContainer>
+      <NavbarLink to="/">Critical Action</NavbarLink>
+      <Spacer />
+      <NavbarLink to="/blog">Blog</NavbarLink>
+      <Spacer />
+      <NavbarLink to="/projects">Projects</NavbarLink>
+      <Spacer />
+      <NavbarLink to="/cool_stuff">Cool Stuff</NavbarLink>
+    </NavbarContainer>
   );
 };
 
