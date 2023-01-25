@@ -1104,6 +1104,16 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/fira-sans@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/fira-sans/-/fira-sans-4.5.10.tgz#63a6dacfa482017a840b40e9c2cfefb187a0e515"
+  integrity sha512-4Edj+GA0LYSqfXOvdTwVGmCShT8Ycd8bKzdfzM302n+I6Hsg6h3gBkBeNgN19PhkcngDznZyHv3EkyrKqvMTGw==
+
+"@fontsource/inconsolata@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/inconsolata/-/inconsolata-4.5.10.tgz#0660baa34a78c3b6cc21ece3bc1907bc43275dec"
+  integrity sha512-kShpiWE3RD4LH4YlZPbyE4VMt826DA7Ugw1jNJt54mxpP7nUsI9gflQOLWSJ9AMLkqPLpjza9iZkKRmU8Q7MOQ==
+
 "@gatsbyjs/parcel-namer-relative-to-cwd@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@gatsbyjs/parcel-namer-relative-to-cwd/-/parcel-namer-relative-to-cwd-2.4.0.tgz#807be24400424b88cb106a7d791688483f45f487"

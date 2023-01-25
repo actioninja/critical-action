@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { HeadFC, PageProps } from "gatsby";
+import Layout from "../components/Layout";
 
 const pageStyles = {
   color: "#232129",
@@ -137,11 +138,7 @@ const links = [
 ];
 
 const IndexPage: React.FC<PageProps> = () => {
-  return (
-    <main style={pageStyles}>
-      Hello! I'm still working on this website. There will be something here soon. Probably.
-    </main>
-  );
+  return <Layout>Hello! I'm still working on this website. There will be something here soon. Probably.</Layout>;
 };
 
 export default IndexPage;

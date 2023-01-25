@@ -16,6 +16,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@fontsource/fira-sans": "^4.5.10",
+    "@fontsource/inconsolata": "^4.5.10",
     "@mdx-js/react": "^2.2.1",
     "babel-plugin-styled-components": "^2.0.7",
     "gatsby": "^5.4.2",
