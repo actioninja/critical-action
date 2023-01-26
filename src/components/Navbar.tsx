@@ -1,41 +1,42 @@
-import * as React from "react";
-import styled from "styled-components";
-import { Link } from "gatsby";
+import * as React from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import * as navbarStyles from './Navbar.module.css';
+import { Link } from 'gatsby';
+import { IsDarkModeContext } from '../theme/GlobalThemeWrapper';
 
-const SpacerNoContent = styled.span`
-  padding: 0 5px;
-`;
+const Spacer = () => <span className={navbarStyles.spacer}>|</span>;
 
-const Spacer = (props: any) => <SpacerNoContent>|</SpacerNoContent>;
+const DarkModeToggle = () => {
+  const { toggleDarkMode, ...rest } = React.useContext(IsDarkModeContext);
 
-const NavbarContainer = styled.nav`
-  padding: 10px;
-  display: flex;
-  position: relative;
-  align-items: flex-end;
-  border-bottom: 2px solid black;
-  font-family: Inconsolata, monospace;
-  font-size: 30px;
-`;
-
-const NavbarLink = styled(Link)`
-  color: ${(props) => props.theme.colors.highlight};
-  &:visited {
-    color: ${(props) => props.theme.colors.highlight};
-  }
-`;
+  return (
+    <span className={navbarStyles.darkmodeToggle} onClick={toggleDarkMode}>
+      Toggle Dark
+    </span>
+  );
+};
 
 const Navbar = () => {
   return (
-    <NavbarContainer>
-      <NavbarLink to="/">Critical Action</NavbarLink>
+    <nav className={navbarStyles.container}>
+      <Link className={navbarStyles.link} to="/">
+        Critical Action
+      </Link>
       <Spacer />
-      <NavbarLink to="/blog">Blog</NavbarLink>
+      <Link className={navbarStyles.link} to="/blog">
+        Blog
+      </Link>
       <Spacer />
-      <NavbarLink to="/projects">Projects</NavbarLink>
+      <Link className={navbarStyles.link} to="/projects">
+        Projects
+      </Link>
       <Spacer />
-      <NavbarLink to="/cool_stuff">Cool Stuff</NavbarLink>
-    </NavbarContainer>
+      <Link className={navbarStyles.link} to="/cool_stuff">
+        Cool Stuff
+      </Link>
+      <DarkModeToggle />
+    </nav>
   );
 };
 

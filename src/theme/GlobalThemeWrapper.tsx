@@ -1,7 +1,4 @@
-import * as React from "react";
-import { ThemeProvider } from "styled-components";
-import { useState } from "react";
-import { darkTheme, GlobalStyles, lightTheme } from "./themes";
+import * as React from 'react';
 
 type ThemeWrapperProps = {
   children: React.ReactNode;
@@ -13,20 +10,26 @@ export const IsDarkModeContext = React.createContext({
   toggleDarkMode: () => {},
 });
 
+export const IsDarkModeProvider = IsDarkModeContext.Provider;
+
 const GlobalThemeWrapper = ({ children }: ThemeWrapperProps) => {
-  const [isDarkMode, setDarkMode] = useState(false);
+  const initialState = null;
+  const [isDarkMode, setDarkMode] = React.useState(false);
 
   const toggleDarkMode = () => {
     setDarkMode(!isDarkMode);
+    const newTheme = isDarkMode ? 'dark-theme' : 'light-theme';
+    const oldTheme = !isDarkMode ? 'dark-theme' : 'light-theme';
+
+    document.body.classList.remove(oldTheme);
+    document.body.classList.add(newTheme);
+
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('darkmode-persist', JSON.stringify(newTheme));
+    }
   };
 
-  return (
-    <IsDarkModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
-      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-        {children} <GlobalStyles />
-      </ThemeProvider>
-    </IsDarkModeContext.Provider>
-  );
+  return <IsDarkModeProvider value={{ isDarkMode, toggleDarkMode }}>{children}</IsDarkModeProvider>;
 };
 
 export default GlobalThemeWrapper;

@@ -1,7 +1,6 @@
-import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
-import Layout from "../components/Layout";
-import { ThemeProvider } from "styled-components";
+import * as React from 'react';
+import type { HeadFC, PageProps } from 'gatsby';
+import Layout from '../components/Layout';
 
 const headingStyles = {
   marginTop: 0,
@@ -9,16 +8,16 @@ const headingStyles = {
   maxWidth: 320,
 };
 const headingAccentStyles = {
-  color: "#663399",
+  color: '#663399',
 };
 const paragraphStyles = {
   marginBottom: 48,
 };
 const codeStyles = {
-  color: "#8A6534",
+  color: '#8A6534',
   padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
+  backgroundColor: '#FFF4DB',
+  fontSize: '1.25rem',
   borderRadius: 4,
 };
 const listStyles = {
@@ -36,10 +35,10 @@ const listItemStyles = {
 };
 
 const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
+  color: '#8954A8',
+  fontWeight: 'bold',
   fontSize: 16,
-  verticalAlign: "5%",
+  verticalAlign: '5%',
 };
 
 interface ContactLink {
@@ -50,19 +49,19 @@ interface ContactLink {
 
 const contactLinks: ContactLink[] = [
   {
-    name: "email",
-    display: "actioninja@criticalaction.net",
-    url: "mailto:actioninja@criticalaction.net",
+    name: 'email',
+    display: 'actioninja@criticalaction.net',
+    url: 'mailto:actioninja@criticalaction.net',
   },
   {
-    name: "GitHub",
-    display: "actioninja",
-    url: "https://github.com/actioninja",
+    name: 'GitHub',
+    display: 'actioninja',
+    url: 'https://github.com/actioninja',
   },
   {
-    name: "Mastodon",
-    display: "@actioninja@peoplemaking.games",
-    url: "https://peoplemaking.games/@actioninja",
+    name: 'Mastodon',
+    display: '@actioninja@peoplemaking.games',
+    url: 'https://peoplemaking.games/@actioninja',
   },
 ];
 
@@ -74,7 +73,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <ul>
         {contactLinks.map(({ name, display, url }) => (
           <li key={name + display}>
-            {name}:{" "}
+            {name}:{' '}
             <a href={url} target="_blank" rel="noreferrer noopener">
               {display}
             </a>

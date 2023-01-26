@@ -1,15 +1,11 @@
-import * as React from "react";
-import Navbar from "./Navbar";
-
-const containerStyle = {
-  maxWidth: "800px",
-  margin: "auto",
-  fontFamily: "Fira Sans",
-  fontSize: 18,
-};
+import * as React from 'react';
+import Navbar from './Navbar';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import * as navbarStyle from './Layout.module.css';
 
 const bodyStyle = {
-  padding: "5px",
+  padding: '10px',
 };
 
 type LayoutProps = {
@@ -18,7 +14,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div style={containerStyle}>
+    <div className={navbarStyle.container}>
       <Navbar />
       <main style={bodyStyle}>{children}</main>
     </div>

@@ -1,0 +1,29 @@
+.container {
+    padding: 10px;
+    display: flex;
+    position: relative;
+    align-items: flex-end;
+    border-bottom: 2px solid black;
+    font-family: Inconsolata, monospace;
+    font-size: 30px;
+}
+
+.spacer {
+    padding: 0 5px;
+}
+
+.darkmode-toggle {
+    color: var(--color-highlight);
+    position: absolute;
+    right: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.link {
+    color: var(--color-highlight);
+    &:visited {
+        color: var(--color-highlight);
+    }
+}
