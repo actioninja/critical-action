@@ -24,6 +24,10 @@ const GlobalThemeWrapper = ({ children }: ThemeWrapperProps) => {
     document.body.classList.remove(oldTheme);
     document.body.classList.add(newTheme);
 
+    if (!document.body.classList.contains('transition')) {
+      document.body.classList.add('transition');
+    }
+
     if (typeof window !== 'undefined') {
       window.localStorage.setItem('darkmode-persist', JSON.stringify(newTheme));
     }

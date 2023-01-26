@@ -18,7 +18,6 @@ function initDarkMode() {
   }
 
   root.classList.add(mode);
-  root.classList.add('transition');
 }
 
 const ThemeScriptTag = () => {
