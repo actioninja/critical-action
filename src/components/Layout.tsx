@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as navbarStyle from './Layout.module.css';
+import { Footer } from './Footer';
 
 const bodyStyle = {
   padding: '10px',
@@ -17,6 +18,7 @@ const Layout = ({ children }: LayoutProps) => {
     <div className={navbarStyle.container}>
       <Navbar />
       <main style={bodyStyle}>{children}</main>
+      <Footer />
     </div>
   );
 };

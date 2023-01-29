@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { PageProps } from 'gatsby';
+import { HeadFC, PageProps } from 'gatsby';
 import Layout from '../components/Layout';
+import { MasterHead } from '../components/Head';
 
 const CoolStuffPage: React.FC<PageProps> = () => {
   return (
@@ -11,3 +12,5 @@ const CoolStuffPage: React.FC<PageProps> = () => {
 };
 
 export default CoolStuffPage;
+
+export const Head: HeadFC = () => <MasterHead titleSuffix="Cool Stuff" />;

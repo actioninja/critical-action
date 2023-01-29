@@ -1,0 +1,6 @@
+.container {
+    border-top: 2px solid var(--color-foreground);
+    padding-top: 10px;
+    margin-top: 10px;
+    font-size: 13px;
+}
