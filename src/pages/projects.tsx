@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { HeadFC, PageProps } from 'gatsby';
-import Layout from '../components/Layout';
+import Layout from '../components/layout/Layout';
 import { MasterHead } from '../components/Head';
 
 const ProjectsPage: React.FC<PageProps> = () => {

@@ -1,0 +1,4 @@
+.block-quote {
+    border-left: var(--standard-border-style);
+    padding: 0em 0.5em;
+}

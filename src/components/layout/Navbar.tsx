@@ -3,7 +3,7 @@ import * as React from 'react';
 // @ts-ignore
 import * as navbarStyles from './Navbar.module.css';
 import { Link } from 'gatsby';
-import { IsDarkModeContext } from '../theme/GlobalThemeWrapper';
+import { IsDarkModeContext } from '../../theme/GlobalThemeWrapper';
 
 const Spacer = () => <span className={navbarStyles.spacer}>|</span>;
 

@@ -25,7 +25,8 @@ body {
     --color-foreground: var(--color-theme-foreground, black);
     --color-background: var(--color-theme-background, white);
     --color-highlight: var(--color-theme-highlight, seagreen);
-    --color-clicked-link: var(--color-theme-clicked-link, teal)
+    --color-clicked-link: var(--color-theme-clicked-link, teal);
+    --standard-border-style: 2px solid var(--color-foreground);
 }
 
 body {
@@ -43,4 +44,8 @@ a {
     &:visited {
         color: var(--color-clicked-link)
     }
+}
+
+hr {
+    border-bottom: var(--standard-border-style);
 }

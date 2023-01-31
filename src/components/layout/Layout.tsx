@@ -5,10 +5,6 @@ import Navbar from './Navbar';
 import * as navbarStyle from './Layout.module.css';
 import { Footer } from './Footer';
 
-const bodyStyle = {
-  padding: '10px',
-};
-
 type LayoutProps = {
   children: React.ReactNode;
 };
@@ -17,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className={navbarStyle.container}>
       <Navbar />
-      <main style={bodyStyle}>{children}</main>
+      <main>{children}</main>
       <Footer />
     </div>
   );

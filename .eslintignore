@@ -1,5 +1,7 @@
 *.*
+*.mdx
 !*.ts
 !*.tsx
+*.css.d.ts
 /public/
 .cache

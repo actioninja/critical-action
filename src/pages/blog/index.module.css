@@ -1,0 +1,47 @@
+.header {
+
+}
+
+.recent-header {
+    border-bottom: 2px solid var(--color-foreground);
+    padding-bottom: 4px;
+}
+
+.recent-header-browse {
+    margin-left: auto;
+    margin-right: 0;
+    float: right
+}
+
+.entry-container {
+    display: block;
+    margin: 20px 0;
+    text-decoration: none;
+    padding: 5px 0;
+}
+
+.entry-container:hover {
+    text-decoration: underline;
+}
+
+.entry-title {
+    color: var(--color-foreground);
+    font-size: 35px;
+    text-decoration: none;
+}
+
+.entry-date {
+    margin-left: auto;
+
+}
+.entry-header {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--color-foreground);
+}
+
+.entry-excerpt {
+    padding: 10px;
+    color: var(--color-foreground);
+}
