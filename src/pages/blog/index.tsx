@@ -2,7 +2,7 @@ import * as React from 'react';
 import Layout from '../../components/layout/Layout';
 import { HeadFC, Link, PageProps, graphql } from 'gatsby';
 import { MasterHead } from '../../components/Head';
-import * as blogIndexStyle from './index.module.css';
+import * as blogIndexStyle from './index.module.scss';
 
 type BlogProps = {
   title?: string | null;
@@ -19,19 +19,18 @@ const BlogEntry = ({ title, date, excerpt, slug }: BlogProps) => {
         <span className={blogIndexStyle.entryDate}>{date}</span>
       </div>
       <div className={blogIndexStyle.entryExcerpt}>{excerpt}...</div>
-      <div>Read more...</div>
+      <div className={blogIndexStyle.underlineOnHover}>Read more...</div>
     </Link>
   );
 };
 
 const BlogPage = ({ data }: PageProps<Queries.GetBlogEntriesQuery>) => {
-  console.log(data);
   const entries = data.allMdx.nodes.map((node) => {
     return <BlogEntry key={node.id} excerpt={node.excerpt} {...node.frontmatter} />;
   });
   return (
     <Layout>
-      <header className={blogIndexStyle.header}>
+      <header>
         <h1>Blog</h1>
         <section>
           Here's where I put informative articles, opinion pieces, and general musings of questionable value.

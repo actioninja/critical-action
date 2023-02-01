@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Navbar from './Navbar';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import * as navbarStyle from './Layout.module.css';
+import * as navbarStyle from './Layout.module.scss';
 import { Footer } from './Footer';
 
 type LayoutProps = {

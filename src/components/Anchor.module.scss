@@ -1,0 +1,18 @@
+.anchor {
+    color: var(--color-highlight);
+    text-decoration: underline;
+    a {
+        color: var(--color-highlight);
+        text-decoration: underline;
+    }
+    &:visited {
+        color: var(--color-clicked-link);
+    }
+}
+
+.tooltip {
+    font-size: 1.5rem;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    padding: 0.2em;
+}

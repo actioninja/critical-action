@@ -1,9 +1,5 @@
-.header {
-
-}
-
 .recent-header {
-    border-bottom: 2px solid var(--color-foreground);
+    border-bottom: var(--standard-border-style);
     padding-bottom: 4px;
 }
 
@@ -18,10 +14,12 @@
     margin: 20px 0;
     text-decoration: none;
     padding: 5px 0;
-}
 
-.entry-container:hover {
-    text-decoration: underline;
+    &:hover {
+        .underline-on-hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .entry-title {
@@ -32,13 +30,14 @@
 
 .entry-date {
     margin-left: auto;
+    color: var(--color-foreground);
 
 }
 .entry-header {
     display: flex;
     align-items: flex-end;
     padding-bottom: 4px;
-    border-bottom: 1px solid var(--color-foreground);
+    border-bottom: var(--standard-border-style);
 }
 
 .entry-excerpt {
