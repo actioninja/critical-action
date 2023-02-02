@@ -9,7 +9,6 @@ function initDarkMode() {
   let mode = '';
 
   const hasUsedToggle = typeof persistedPreference === 'string';
-  console.log('Definitely running!');
 
   if (hasUsedToggle) {
     mode = JSON.parse(persistedPreference);
@@ -24,7 +23,7 @@ function initDarkMode() {
 const ThemeScriptTag = () => {
   const themeScript = `(${initDarkMode})()`;
 
-  const themeScriptMinified = Terser.minify(themeScript).code;
+  const themeScriptMinified = Terser.minify(themeScript).code as string;
 
   return <script dangerouslySetInnerHTML={{ __html: themeScriptMinified }} />;
 };

@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { graphql, HeadFC, PageProps } from 'gatsby';
-import Layout from '../components/layout/Layout';
-import { MasterHead } from '../components/Head';
+import Layout from '../../components/layout/Layout';
+import { MasterHead } from '../../components/Head';
 import * as projectsStyle from './projects.module.scss';
-import Anchor from '../components/Anchor';
+import Anchor from '../../components/Anchor';
+import { projectList } from '../../content/projects';
+import SplitHeader from '../../components/SplitHeader';
 
 type ProjectEntryProps = {
+  slug: string;
   name: string;
   repoLink: string;
   description: string;
   children: React.ReactNode;
   demoLink?: string;
-  status?: string;
 };
 
 const DemoLink = ({ url }: { url: string }) => (
@@ -20,7 +22,7 @@ const DemoLink = ({ url }: { url: string }) => (
   </div>
 );
 
-const ProjectEntry = ({ name, description, children, demoLink, repoLink, status }: ProjectEntryProps) => {
+const ProjectEntry = ({ slug, name, description, children, demoLink, repoLink }: ProjectEntryProps) => {
   const [hidden, setHidden] = React.useState(true);
 
   const toggleOpen = () => {
@@ -29,19 +31,13 @@ const ProjectEntry = ({ name, description, children, demoLink, repoLink, status 
 
   return (
     <section className={projectsStyle.projectEntry}>
-      <div className={projectsStyle.projectTitle}>
-        <h2>{name}</h2>
-        <span>
-          <Anchor href={repoLink}>Repo</Anchor>
-        </span>
-      </div>
+      <SplitHeader rightSide={<Anchor href={repoLink}>Repo</Anchor>}>{name}</SplitHeader>
       {demoLink && <DemoLink url={demoLink} />}
       {description}
-      {status}
 
-      <div className={hidden && projectsStyle.hidden}>{children}</div>
-      <div onClick={toggleOpen} className={projectsStyle.toggleButton}>
-        {hidden ? 'click here for more info' : 'click here to collapse'}
+      <div className={hidden ? projectsStyle.hidden : undefined}>{children}</div>
+      <div className={projectsStyle.toggleButton}>
+        <Anchor to={`/projects/${slug}`}>Click here for more info</Anchor>
       </div>
     </section>
   );
@@ -53,16 +49,12 @@ const ProjectsPage = ({ data }: PageProps<Queries.GetProjectEntriesQuery>) => {
       <hr />
       <div className={projectsStyle.projectEntryContainer}>
         {data.allMdx.nodes.map((node: any) => (
-          <ProjectEntry key={node.id} {...node.frontmatter}>
-            {node.body}
-          </ProjectEntry>
+          <ProjectEntry key={node.id} {...node.frontmatter} />
         ))}
       </div>
     </Layout>
   );
 };
-
-export default ProjectsPage;
 
 export const query = graphql`
   query GetProjectEntries {
@@ -72,17 +64,18 @@ export const query = graphql`
     ) {
       nodes {
         frontmatter {
+          slug
           demoLink
           description
-          status
           repoLink
           name
         }
         id
-        body
       }
     }
   }
 `;
+
+export default ProjectsPage;
 
 export const Head: HeadFC = () => <MasterHead titleSuffix="Projects" />;

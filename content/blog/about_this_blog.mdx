@@ -4,5 +4,59 @@ date: 2022-01-29T04:00:00-08:00
 slug: about-this-site
 draft: true
 ---
+# Styling
 
-# TODO
+## Color Scheme
+
+Color schemes are always a fairly trivial distinction, and good old black on white is always a safe choice. I wanted
+things to pop a little more and be distinct, so I went with a more unconventional brown based colorscheme. It's
+effectively the compliment of more standard cool toned color schemes. Text is a light cream color that matches the background.
+The dark mode is just a simple foreground/background swap.
+
+## `styled-components`: the first dead end
+
+I had heard it
+
+## Dark Mode
+
+Swapping some values around with css is fairly trivial. Most people are going to be able to figure out how to change
+applied classNames in React pretty quickly. styled-components initially made it even more trivial, it uses a fairly
+straightforward React Context based approach to theming styled-components like so:
+
+```jsx
+render(
+  <div>
+    <Button>Normal</Button>
+
+    <ThemeProvider theme={theme}>
+      <Button>Themed</Button>
+    </ThemeProvider>
+  </div>
+);
+```
+
+I liked this model, I could just make a "theme wrapper" top level component and then inject it as a wrapper over
+everything with Gatsby. Then just mess with some hooked state on that top level component to swap used theme. The
+problem stemmed from that the actual applied styles are nearly completely opaque once all the styled-components with
+Gatsby magic transpilation happens. You just end up with a bunch of mangled CSS classnames. Which wouldn't really be a
+big deal except for that I also wanted the selected theme to do two critical things:
+
+1. First visit detect users preferred theme via a media query
+2. Persist selected theme between visits via localStorage
+
+Any attempt I could come up with to do this via React's Effect APIs resulted in the dreaded Flash of Unstyled Content
+no matter how I approached it. Minor when it's a font changing its shape subtly in a frame or two, *brutal* when a
+full white screen is flashed to the user before abruptly becoming dark. I found several "off the shelf" approaches to
+persistent themes in gatsby plugins, as well as a few blog posts on the subject. *All* of them pivoted around one
+method; injecting a script directly into the html tag so it runs early. Great. This approach also don't seem to play
+nicely with styled-components, and was going to require shifting to a unified stylesheet. Applying a global style seemed
+to just automatically
+
+## PostCSS: Somewhat of a deadend
+
+I had
+
+Again, I'm probably just doing something wrong, but I was too unfamaliar with PostCSS and doing it without "CSS in JS"
+seemed like a bit of a waste.
+
+## Sass: I already knew this one

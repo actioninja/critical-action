@@ -1,20 +1,3 @@
-.project-title {
-    display: flex;
-    align-items: flex-end;
-    border-bottom: var(--standard-border-style);
-    padding: 0.2em 0;
-    margin-bottom: 0.5em;
-
-    h2 {
-        display: inline;
-        padding: 0;
-        margin: 0;
-    }
-    span {
-        margin-left: auto;
-    }
-}
-
 .project-entry-container {
     display: flex;
     flex-wrap: wrap;
@@ -33,14 +16,6 @@
     &:hover {
         text-decoration: underline;
     }
-}
-
-.extended-description {
-
-}
-
-.hidden {
-    display: none;
 }
 
 $width-breakpoint: 30em;

@@ -3,6 +3,7 @@ import Layout from '../../components/layout/Layout';
 import { HeadFC, Link, PageProps, graphql } from 'gatsby';
 import { MasterHead } from '../../components/Head';
 import * as blogIndexStyle from './index.module.scss';
+import SplitHeader from '../../components/SplitHeader';
 
 type BlogProps = {
   title?: string | null;
@@ -14,10 +15,14 @@ type BlogProps = {
 const BlogEntry = ({ title, date, excerpt, slug }: BlogProps) => {
   return (
     <Link to={'/blog/' + slug} className={blogIndexStyle.entryContainer}>
-      <div className={blogIndexStyle.entryHeader}>
-        <span className={blogIndexStyle.entryTitle}>{title}</span>
-        <span className={blogIndexStyle.entryDate}>{date}</span>
-      </div>
+      <SplitHeader
+        rightSide={date}
+        className={blogIndexStyle.entryHeader}
+        rightClassName={blogIndexStyle.entryDate}
+        titleClassName={blogIndexStyle.entryTitle}
+      >
+        {title}
+      </SplitHeader>
       <div className={blogIndexStyle.entryExcerpt}>{excerpt}...</div>
       <div className={blogIndexStyle.underlineOnHover}>Read more...</div>
     </Link>
