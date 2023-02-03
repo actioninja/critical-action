@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Layout from '../../components/layout/Layout';
-import { HeadFC, Link, PageProps, graphql } from 'gatsby';
 import { MasterHead } from '../../components/Head';
 import * as blogIndexStyle from './index.module.scss';
 import SplitHeader from '../../components/SplitHeader';
+import { getAllFromContentDir, slugToPostData } from '../../lib/mdxHelpers';
+import Link from 'next/link';
 
 type BlogProps = {
   title?: string | null;
@@ -14,7 +15,7 @@ type BlogProps = {
 
 const BlogEntry = ({ title, date, excerpt, slug }: BlogProps) => {
   return (
-    <Link to={'/blog/' + slug} className={blogIndexStyle.entryContainer}>
+    <Link href={'/blog/' + slug} className={blogIndexStyle.entryContainer}>
       <SplitHeader
         rightSide={date}
         className={blogIndexStyle.entryHeader}
@@ -23,15 +24,15 @@ const BlogEntry = ({ title, date, excerpt, slug }: BlogProps) => {
       >
         {title}
       </SplitHeader>
-      <div className={blogIndexStyle.entryExcerpt}>{excerpt}...</div>
+      <div className={blogIndexStyle.entryExcerpt}>{excerpt}</div>
       <div className={blogIndexStyle.underlineOnHover}>Read more...</div>
     </Link>
   );
 };
 
-const BlogPage = ({ data }: PageProps<Queries.GetBlogEntriesQuery>) => {
-  const entries = data.allMdx.nodes.map((node) => {
-    return <BlogEntry key={node.id} excerpt={node.excerpt} {...node.frontmatter} />;
+export default function BlogPage({ posts }) {
+  const entries = posts.map((node) => {
+    return <BlogEntry key={node.slug} slug={node.slug} excerpt={node.excerpt} {...node.frontmatter} />;
   });
   return (
     <Layout>
@@ -52,28 +53,17 @@ const BlogPage = ({ data }: PageProps<Queries.GetBlogEntriesQuery>) => {
       {entries.length ? entries : 'Nothing yet! Check back later.'}
     </Layout>
   );
-};
+}
 
-export const query = graphql`
-  query GetBlogEntries {
-    allMdx(
-      filter: { internal: { contentFilePath: { regex: "/(/blog/)/" } }, frontmatter: { draft: { eq: false } } }
-      sort: { frontmatter: { date: DESC } }
-      limit: 10
-    ) {
-      nodes {
-        frontmatter {
-          title
-          date(formatString: "LLL")
-          slug
-        }
-        excerpt
-        id
-      }
-    }
-  }
-`;
+const postsDir = 'blog';
 
-export default BlogPage;
+export async function getStaticProps() {
+  const posts = getAllFromContentDir(postsDir);
+  const filtered = posts.filter((post) => !post.frontmatter.draft);
 
-export const Head: HeadFC = () => <MasterHead titleSuffix="Blog" />;
+  return {
+    props: {
+      posts: filtered,
+    },
+  };
+}

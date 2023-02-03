@@ -13,7 +13,6 @@ export const IsDarkModeContext = React.createContext({
 export const IsDarkModeProvider = IsDarkModeContext.Provider;
 
 const GlobalThemeWrapper = ({ children }: ThemeWrapperProps) => {
-  const initialState = null;
   const [isDarkMode, setDarkMode] = React.useState(false);
 
   const toggleDarkMode = () => {

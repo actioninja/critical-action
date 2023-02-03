@@ -1,5 +1,4 @@
 import * as React from 'react';
-import type { HeadFC, PageProps } from 'gatsby';
 import Layout from '../components/layout/Layout';
 import { MasterHead } from '../components/Head';
 
@@ -27,7 +26,7 @@ const contactLinks: ContactLink[] = [
   },
 ];
 
-const IndexPage: React.FC<PageProps> = () => {
+export default function IndexPage() {
   return (
     <Layout>
       Hello! I'm still working on this website. There will be something here soon. Probably.
@@ -44,8 +43,4 @@ const IndexPage: React.FC<PageProps> = () => {
       </ul>
     </Layout>
   );
-};
-
-export default IndexPage;
-
-export const Head: HeadFC = () => <MasterHead />;
+}

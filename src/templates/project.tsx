@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Layout from '../components/layout/Layout';
-import { graphql, PageProps } from 'gatsby';
 import { MDXProvider } from '@mdx-js/react';
 import Anchor from '../components/Anchor';
 import SplitHeader from '../components/SplitHeader';
+/*
 
 type ProjectTemplateData = {
   mdx: {
@@ -49,3 +49,4 @@ export const query = graphql`
 `;
 
 export default ProjectTemplate;
+*/

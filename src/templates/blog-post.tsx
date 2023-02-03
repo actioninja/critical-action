@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Layout from '../components/layout/Layout';
-import { HeadFC, graphql, PageProps } from 'gatsby';
 import { MasterHead } from '../components/Head';
 import * as blogPostStyle from './blog-post.module.scss';
 import { MDXProvider } from '@mdx-js/react';
 import CodeContainer from '../components/mdx/CodeContainer';
 import BlockQuote from '../components/mdx/BlockQuote';
+/*
 
 type TitleArgs = {
   title: string;
@@ -60,3 +60,4 @@ export const query = graphql`
 export default BlogEntryPage;
 
 export const Head: HeadFC = () => <MasterHead titleSuffix="Blog" />;
+*/

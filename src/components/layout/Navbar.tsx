@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as navbarStyles from './Navbar.module.scss';
-import { Link } from 'gatsby';
 import { IsDarkModeContext } from '../../theme/GlobalThemeWrapper';
+import Link from 'next/link';
 
 const Spacer = () => <span className={navbarStyles.spacer}>|</span>;
 
@@ -18,19 +18,19 @@ const DarkModeToggle = () => {
 const Navbar = () => {
   return (
     <nav className={navbarStyles.container}>
-      <Link className={navbarStyles.link} to="/">
+      <Link className={navbarStyles.link} href="/">
         Critical Action
       </Link>
       <Spacer />
-      <Link className={navbarStyles.link} to="/blog">
+      <Link className={navbarStyles.link} href="/blog">
         Blog
       </Link>
       <Spacer />
-      <Link className={navbarStyles.link} to="/projects">
+      <Link className={navbarStyles.link} href="/projects">
         Projects
       </Link>
       <Spacer />
-      <Link className={navbarStyles.link} to="/cool_stuff">
+      <Link className={navbarStyles.link} href="/cool_stuff">
         Cool Stuff
       </Link>
       <DarkModeToggle />

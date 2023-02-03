@@ -1,8 +1,8 @@
 node_modules/
-.cache/
-public
 src/gatsby-types.d.ts
 yarn-error.log
 .idea/
 *.css.d.ts
 *.scss.d.ts
+.next/
+next-env.d.ts

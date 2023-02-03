@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Terser from 'terser';
+import Script from 'next/script';
 
 function initDarkMode() {
   const mql = window.matchMedia('(prefers-color-scheme: dark)');
@@ -25,7 +26,7 @@ const ThemeScriptTag = () => {
 
   const themeScriptMinified = Terser.minify(themeScript).code as string;
 
-  return <script dangerouslySetInnerHTML={{ __html: themeScriptMinified }} />;
+  return <Script dangerouslySetInnerHTML={{ __html: themeScriptMinified }} />;
 };
 
 export default ThemeScriptTag;

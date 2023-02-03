@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { HeadFC } from 'gatsby';
 
 export type HeadArgs = {
-  titleSuffix?: string;
+  titlePrefix?: string;
   children?: React.ReactNode;
 };
 
-export const MasterHead = ({ titleSuffix, children }: HeadArgs) => (
+export const MasterHead = ({ titlePrefix, children }: HeadArgs) => (
   <>
     <title>
-      {titleSuffix}
-      {titleSuffix == undefined ? '' : ' - '}
+      {titlePrefix}
+      {titlePrefix == undefined ? '' : ' - '}
       Critical Action
     </title>
     <meta charSet="utf-8" />

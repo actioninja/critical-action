@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as footerStyle from './Footer.module.scss';
-import { Link } from 'gatsby';
 import Anchor from '../Anchor';
 
 export const Footer = () => {
@@ -18,7 +17,7 @@ export const Footer = () => {
       <section>
         Check out the source for this website{' '}
         <Anchor href="https://github.com/actioninja/critical-action/tree/prod">here,</Anchor> and a writeup on the
-        functionality <Anchor to="/blog/about-this-site">here.</Anchor>
+        functionality <Anchor href="/blog/about-this-site">here.</Anchor>
       </section>
     </footer>
   );

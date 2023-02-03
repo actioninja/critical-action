@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     align-items: flex-end;
     border-bottom: var(--standard-border-style);
-    font-family: Inconsolata, monospace;
+    font-family: var(--inconsolata-font), monospace;
     font-size: calc(1.15em + 1vmin);
     margin-bottom: 0.4em;
 }

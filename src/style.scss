@@ -31,9 +31,14 @@ body {
 }
 
 body {
-    font-family: Fira Sans, Helvetica, Arial, sans-serif;
+    font-family: var(--fira-sans-font), Sans, Helvetica, Arial, sans-serif;
     color: var(--color-foreground);
     background-color: var(--color-background);
+}
+
+blockquote {
+    border-left: var(--standard-border-style);
+    padding: 0em 0.5em;
 }
 
 .transition {
@@ -49,4 +54,29 @@ a {
 
 hr {
     border-bottom: var(--standard-border-style);
+}
+
+h1 {
+    border-bottom: var(--standard-border-style);
+}
+
+table {
+    margin: 0.4em;
+    border-collapse: collapse;
+
+    th {
+        border-bottom: var(--standard-border-style);
+        text-align: left;
+    }
+
+    td {
+        padding: 0.6em;
+        text-align: left;
+    }
+
+    tr:nth-child(even) {
+        background: rgba(0, 0, 0, 0.15);
+    }
+
+
 }
