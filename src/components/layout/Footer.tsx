@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as footerStyle from './Footer.module.scss';
+import footerStyle from './Footer.module.scss';
 import Anchor from '../Anchor';
 
 export const Footer = () => {

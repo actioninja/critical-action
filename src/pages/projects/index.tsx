@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Layout from '../../components/layout/Layout';
-import { MasterHead } from '../../components/Head';
-import * as projectsStyle from './projects.module.scss';
+import projectsStyle from './projects.module.scss';
 import Anchor from '../../components/Anchor';
 import SplitHeader from '../../components/SplitHeader';
+import { getAllFromContentDir } from '../../lib/mdxHelpers';
 
 type ProjectEntryProps = {
-  slug: string;
   name: string;
   repoLink: string;
   description: string;
@@ -41,18 +40,29 @@ const ProjectEntry = ({ slug, name, description, children, demoLink, repoLink }:
   );
 };
 
-export default function ProjectsPage({ data }) {
+export default function ProjectsPage({ projects }) {
   return (
     <Layout>
-      Rebuild in progress
+      Here's projects I've created or worked on.
       <hr />
-      {/*
       <div className={projectsStyle.projectEntryContainer}>
-        {data.allMdx.nodes.map((node: any) => (
-          <ProjectEntry key={node.id} {...node.frontmatter} />
+        {projects.map((node: any) => (
+          <ProjectEntry key={node.id} slug={node.slug} {...node.frontmatter} />
         ))}
       </div>
-      */}
     </Layout>
   );
+}
+
+export const projectsDir = 'projects';
+
+export async function getStaticProps() {
+  const projects = getAllFromContentDir(projectsDir);
+  const sortedProjects = projects.sort((a, b) => a.frontmatter.priority - b.frontmatter.priority);
+
+  return {
+    props: {
+      projects: sortedProjects,
+    },
+  };
 }

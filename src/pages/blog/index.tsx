@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Layout from '../../components/layout/Layout';
-import { MasterHead } from '../../components/Head';
-import * as blogIndexStyle from './index.module.scss';
+import blogIndexStyle from './index.module.scss';
 import SplitHeader from '../../components/SplitHeader';
 import { getAllFromContentDir, slugToPostData } from '../../lib/mdxHelpers';
 import Link from 'next/link';
+import Head from 'next/head';
 
 type BlogProps = {
   title?: string | null;
@@ -36,6 +36,9 @@ export default function BlogPage({ posts }) {
   });
   return (
     <Layout>
+      <Head>
+        <title>Blog - Critical Action</title>
+      </Head>
       <header>
         <h1>Blog</h1>
         <section>

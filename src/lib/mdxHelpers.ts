@@ -32,10 +32,14 @@ export function slugToPostData(dir: string, slug: string): PostData {
   const fullPath = join(contentDir, dir, `${realSlug}.mdx`);
   const fileContent = fs.readFileSync(fullPath, 'utf-8');
   const { data, content, excerpt } = matter(fileContent, { excerpt: true });
-  const formatted = {
-    ...data,
-    date: format(data.date, 'yyyy-mm-dd'),
-  };
+
+  let formatted = data;
+  if (data.date != null) {
+    formatted = {
+      ...data,
+      date: format(data.date, 'yyyy-mm-dd'),
+    };
+  }
 
   return {
     slug: realSlug,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as splitHeaderStyle from './SplitHeader.module.scss';
+import splitHeaderStyle from './SplitHeader.module.scss';
 
 export type SplitHeaderProps = {
   rightSide: React.ReactNode;

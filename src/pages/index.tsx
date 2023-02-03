@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Layout from '../components/layout/Layout';
-import { MasterHead } from '../components/Head';
 
 interface ContactLink {
   name: string;

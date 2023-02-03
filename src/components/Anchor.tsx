@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as anchorStyle from './Anchor.module.scss';
+import anchorStyle from './Anchor.module.scss';
 import Link from 'next/link';
 import { Tooltip, TooltipContent, TooltipTrigger } from './Tooltip';
 

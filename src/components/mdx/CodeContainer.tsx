@@ -1,6 +1,6 @@
 import Highlight, { defaultProps, Language } from 'prism-react-renderer';
 import * as React from 'react';
-import * as codeStyle from './CodeContainer.module.scss';
+import codeStyle from './CodeContainer.module.scss';
 import theme from 'prism-react-renderer/themes/dracula';
 
 type CodeContainerProps = {

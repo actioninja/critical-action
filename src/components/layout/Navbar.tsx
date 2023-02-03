@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as navbarStyles from './Navbar.module.scss';
+import navbarStyles from './Navbar.module.scss';
 import { IsDarkModeContext } from '../../theme/GlobalThemeWrapper';
 import Link from 'next/link';
 

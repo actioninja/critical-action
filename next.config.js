@@ -33,10 +33,6 @@ const nextConfig = {
     });
 
     return config;
-  },
-  //whatever lol
-  typescript: {
-    ignoreBuildErrors: true,
   }
 }
 

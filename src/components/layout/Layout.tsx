@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Navbar from './Navbar';
-import * as navbarStyle from './Layout.module.scss';
+import navbarStyle from './Layout.module.scss';
 import { Footer } from './Footer';
 
 type LayoutProps = {
