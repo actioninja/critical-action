@@ -2,7 +2,7 @@ import * as React from 'react';
 import Terser from 'terser';
 import Script from 'next/script';
 
-export default function initDarkMode() {
+function initDarkMode() {
   const mql = window.matchMedia('(prefers-color-scheme: dark)');
   const prefersDarkFromMQ = mql.matches;
   const persistedPreference = localStorage.getItem('darkmode-persist');
@@ -20,3 +20,13 @@ export default function initDarkMode() {
 
   root.classList.add(mode);
 }
+
+const ThemeScriptTag = () => {
+  const themeScript = `(${initDarkMode})()`;
+
+  const themeScriptMinified = Terser.minify(themeScript).code as string;
+
+  return <Script dangerouslySetInnerHTML={{ __html: themeScriptMinified }} />;
+};
+
+export default ThemeScriptTag;

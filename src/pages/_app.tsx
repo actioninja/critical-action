@@ -6,7 +6,6 @@ import { MDXProvider } from '@mdx-js/react';
 import CodeContainer from '../components/mdx/CodeContainer';
 import Anchor from '../components/Anchor';
 import '../style.scss';
-import initDarkMode from '../theme/persistScript';
 
 export const inconsolata = Inconsolata({
   subsets: ['latin'],
@@ -31,7 +30,7 @@ export default function ActionApp({ Component, pageProps }: AppProps) {
           --inconsolata-font: ${inconsolata.style.fontFamily};
         }
       `}</style>
-      <style>{pageProps.themeScript}</style>
+      <ThemeScriptTag />
       <main>
         <MDXProvider components={components}>
           <GlobalThemeWrapper>
@@ -41,19 +40,4 @@ export default function ActionApp({ Component, pageProps }: AppProps) {
       </main>
     </>
   );
-}
-
-export async function getStaticProps(context) {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const terser = require('terser');
-
-  const themeScript = `(${initDarkMode})()`;
-
-  const themeScriptMinified = terser.minify(themeScript).code as string;
-
-  return {
-    props: {
-      themeScript: themeScriptMinified,
-    },
-  };
 }
