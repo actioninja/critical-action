@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Terser from 'terser';
 import Script from 'next/script';
 
+/* untersed version of the dark mode init script
 function initDarkMode() {
   const mql = window.matchMedia('(prefers-color-scheme: dark)');
   const prefersDarkFromMQ = mql.matches;
@@ -20,13 +20,14 @@ function initDarkMode() {
 
   root.classList.add(mode);
 }
+ */
+
+const tersed = `const mql=window.matchMedia("(prefers-color-scheme: dark)"),prefersDarkFromMQ=mql.matches,persistedPreference=localStorage.getItem("darkmode-persist"),root=document.body;let mode="";const hasUsedToggle="string"==typeof persistedPreference;hasUsedToggle?mode=JSON.parse(persistedPreference):(mode=prefersDarkFromMQ?"dark-theme":"light-theme",localStorage.setItem("darkmode-persist",JSON.stringify(mode))),root.classList.add(mode);`;
 
 const ThemeScriptTag = () => {
-  const themeScript = `(${initDarkMode})()`;
+  const themeScript = `(${tersed})()`;
 
-  const themeScriptMinified = Terser.minify(themeScript).code as string;
-
-  return <Script dangerouslySetInnerHTML={{ __html: themeScriptMinified }} />;
+  return <Script dangerouslySetInnerHTML={{ __html: themeScript }} />;
 };
 
 export default ThemeScriptTag;
