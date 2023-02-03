@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as anchorStyle from './Anchor.module.scss';
 import Link from 'next/link';
-import { autoUpdate, useDismiss, useFloating, useFocus, useHover, useInteractions, useRole } from '@floating-ui/react';
 import { Tooltip, TooltipContent, TooltipTrigger } from './Tooltip';
 
 type AnchorProps = {
