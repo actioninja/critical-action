@@ -1,0 +1,15 @@
+---
+interface Props {
+    href: string;
+}
+const { href } = Astro.props;
+---
+<script>
+    import tippy from "tippy.js";
+
+    tippy("[data-tippy-content]");
+</script>
+
+<a href={href} data-tippy-content={href}>
+    <slot />
+</a>

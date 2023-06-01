@@ -1,36 +1,113 @@
 ---
-export interface Props {
-	title: string;
-}
-
+import '@fontsource/fira-sans';
+import Footer from "@components/layout/Footer.astro";
+import Navbar from "@components/layout/navbar/Navbar.astro"
 const { title } = Astro.props;
+const spacer = title ? ' - ' : '';
 ---
+<style is:global lang="scss">
+    .light-theme {
+        --color-theme-foreground: #2d261f;
+        --color-theme-background: #fff1eb;
+        --color-theme-highlight: #317953;
+        --color-theme-clicked-link: #226769;
+    }
+
+    .dark-theme {
+        --color-theme-foreground: #fff1eb;
+        --color-theme-background: #2d261f;
+        --color-theme-highlight: #4dab72;
+        --color-theme-clicked-link: #226769;
+    }
+
+    html {
+        box-sizing: border-box;
+        font-size: 62.5%;
+    }
+
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+
+    body {
+        text-rendering: optimizeLegibility;
+        --color-foreground: var(--color-theme-foreground, black);
+        --color-background: var(--color-theme-background, white);
+        --color-highlight: var(--color-theme-highlight, seagreen);
+        --color-clicked-link: var(--color-theme-clicked-link, teal);
+        --standard-border-style: 2px solid var(--color-foreground);
+        font-family: 'Fira Sans', Sans, Helvetica, Arial, sans-serif;
+        color: var(--color-foreground);
+        background-color: var(--color-background);
+    }
+
+    blockquote {
+        border-left: var(--standard-border-style);
+        padding: 0em 0.5em;
+    }
+
+    .transition {
+        transition: all 0.5s;
+    }
+
+    a {
+        color: var(--color-highlight);
+        &:visited {
+            color: var(--color-clicked-link)
+        }
+    }
+
+    hr {
+        border-bottom: var(--standard-border-style);
+    }
+
+    h1 {
+        border-bottom: var(--standard-border-style);
+    }
+
+    table {
+        margin: 0.4em;
+        border-collapse: collapse;
+
+        th {
+            border-bottom: var(--standard-border-style);
+            text-align: left;
+        }
+
+        td {
+            padding: 0.6em;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background: rgba(0, 0, 0, 0.15);
+        }
+    }
+
+
+</style>
+
+<style>
+    body {
+        max-width: 100rem;
+        margin: auto;
+        font-size: 1.8rem;
+    }
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="robots" content="follow" />
+        <meta name="author" content="Rob Bailey (actioninja)" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}{spacer}Critical Action</title>
+    </head>
+    <body class="light-theme">
+        <Navbar />
+        <slot />
+        <Footer />
+    </body>
 </html>
-<style is:global>
-	:root {
-		--accent: 124, 58, 237;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background-color: #F6F6F6;
-	}
-	code {
-		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-			Bitstream Vera Sans Mono, Courier New, monospace;
-	}
-</style>

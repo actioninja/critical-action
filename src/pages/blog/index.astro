@@ -1,0 +1,26 @@
+---
+import Layout from "@layouts/Layout.astro";
+import SplitHeader from "@components/SplitHeader.astro";
+import { getCollection } from "astro:content";
+
+const blogEntries = await getCollection('blog', ({ data }) => {
+    return data.draft === false;
+});
+---
+<style>
+
+</style>
+
+<Layout title="Blog">
+    <header>
+        <h1>
+            Blog
+        </h1>
+        <section>
+            Here's where I put informative articles, opinion pieces, and general musings of questionable value.
+        </section>
+    </header>
+    <SplitHeader>
+        <span>Recent Posts</span>
+    </SplitHeader>
+</Layout>
