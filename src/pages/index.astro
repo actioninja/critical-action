@@ -1,36 +1,36 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-    const contactLinks = [
-    {
-        name: 'email',
-        display: 'actioninja@criticalaction.net',
-        url: 'mailto:actioninja@criticalaction.net',
-    },
-    {
-        name: 'GitHub',
-        display: 'actioninja',
-        url: 'https://github.com/actioninja',
-    },
-    {
-        name: 'Mastodon',
-        display: '@actioninja@peoplemaking.games',
-        url: 'https://peoplemaking.games/@actioninja',
-    }
-    ];
+const contactLinks = [
+  {
+    name: 'email',
+    display: 'actioninja@criticalaction.net',
+    url: 'mailto:actioninja@criticalaction.net',
+  },
+  {
+    name: 'GitHub',
+    display: 'actioninja',
+    url: 'https://github.com/actioninja',
+  },
+  {
+    name: 'Mastodon',
+    display: '@actioninja@peoplemaking.games',
+    url: 'https://peoplemaking.games/@actioninja',
+  }
+];
 ---
 
 <Layout>
-    Hello! I'm still working on this website. There will be something here soon. Probably.
-    <section>Here's some places you can find me. I am more likely to respond in the order that they're listed.</section>
-    <ul>
-        {contactLinks.map(({name, display, url}) => (
-            <li>
-                {name}:{' '}
-                <a href={url} target="_blank" rel="noreferrer noopener">
-                    {display}
-                </a>
-            </li>
-        ))}
-    </ul>
+  Hello! I'm still working on this website. There will be something here soon. Probably.
+  <section>Here's some places you can find me. I am more likely to respond in the order that they're listed.</section>
+  <ul>
+    {contactLinks.map(({name, display, url}) => (
+      <li>
+        {name}:{' '}
+        <a href={url} target="_blank" rel="noreferrer noopener">
+          {display}
+        </a>
+      </li>
+    ))}
+  </ul>
 </Layout>

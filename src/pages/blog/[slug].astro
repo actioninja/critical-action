@@ -1,7 +1,27 @@
 ---
-export function getStaticPaths() {
+import Layout from "@layouts/Layout.astro";
+import {getCollection} from "astro:content";
+import Anchor from "@components/Anchor.astro";
 
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: {slug: entry.slug},
+    props: {entry},
+  }))
 }
 
+const {entry} = Astro.props;
 
+const {title, description, date, category, tags, readTime} = entry.data;
+
+const {Content} = await entry.render();
 ---
+
+
+<Layout title={`${title} - Blog`}>
+  <Anchor href="/blog">Go Back</Anchor>
+  <h1>{title}</h1>
+  <Content/>
+  <Anchor href="/blog">Go Back</Anchor>
+  </Layoutu>

@@ -4,30 +4,34 @@ import Anchor from "@components/Anchor.astro";
 ---
 
 <style lang="scss">
-    nav {
-        padding: 0.3em;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-end;
-        border-bottom: var(--standard-border-style);
-        font-family: "Inconsolata", monospace;
-        font-size: calc(1.15em + 1vmin);
-        margin-bottom: 0.4em;
-    }
-    a {
-        color: var(--color-highlight);
-        &:visited {
-            color: var(--color-highlight);
-        }
-    }
+  nav {
+    padding: 0.3em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    border-bottom: var(--standard-border-style);
+    font-family: "Inconsolata", monospace;
+    font-size: calc(1.15em + 1vmin);
+    margin-bottom: 0.4em;
+  }
+
+  a {
+    color: var(--color-highlight);
+
+  &
+  :visited {
+    color: var(--color-highlight);
+  }
+
+  }
 </style>
 
 <nav>
-    <Anchor href="/">Critical Action</Anchor>
-    <Spacer />
-    <Anchor href="/blog">Blog</Anchor>
-    <Spacer />
-    <Anchor href="/projects">Projects</Anchor>
-    <Spacer />
-    <Anchor href="/cool-stuff">Cool Stuff</Anchor>
+  <Anchor href="/">Critical Action</Anchor>
+  <Spacer/>
+  <Anchor href="/blog">Blog</Anchor>
+  <Spacer/>
+  <Anchor href="/projects">Projects</Anchor>
+  <Spacer/>
+  <Anchor href="/cool-stuff">Cool Stuff</Anchor>
 </nav>

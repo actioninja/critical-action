@@ -1,26 +1,67 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import SplitHeader from "@components/SplitHeader.astro";
-import { getCollection } from "astro:content";
+import {getCollection} from "astro:content";
 
-const blogEntries = await getCollection('blog', ({ data }) => {
-    return data.draft === false;
+const blogEntries = await getCollection('blog', ({data}) => {
+  return data.draft === false;
 });
 ---
-<style>
+<style lang="scss">
+  .entry-container {
+    display: block;
+    margin: 20px 0;
+    text-decoration: none;
+    padding: 5px 0;
+    color: var(--color-foreground);
 
+  &
+  :hover {
+
+  .underline-on-hover {
+    text-decoration: underline;
+  }
+
+  }
+  }
+
+  .entry-title {
+    color: var(--color-foreground);
+    font-size: 35px;
+    text-decoration: none;
+  }
+
+  .entry-excerpt {
+    padding: 10px;
+    color: var(--color-foreground);
+  }
 </style>
 
 <Layout title="Blog">
-    <header>
-        <h1>
-            Blog
-        </h1>
-        <section>
-            Here's where I put informative articles, opinion pieces, and general musings of questionable value.
-        </section>
-    </header>
-    <SplitHeader>
-        <span>Recent Posts</span>
-    </SplitHeader>
+  <header>
+    <h1>
+      Blog
+    </h1>
+    <section>
+      Here's where I put informative articles, opinion pieces, and general musings of questionable value.
+    </section>
+  </header>
+  <SplitHeader>
+    <span>Recent Posts</span>
+  </SplitHeader>
+  {!blogEntries.length ? 'Nothing yet! Check back later.' : (blogEntries.map(({slug, data}) => (
+    <a href={"/blog/" + slug} class="entry-container">
+      <SplitHeader>
+        <span class="entry-title">{data.title}</span>
+        <span
+          slot="right-side">{`${data.date.toLocaleDateString('fr-CA')} ${data.date.toLocaleTimeString('en-US', {timeStyle: "short"})}`}</span>
+      </SplitHeader>
+      <div class="entry-excerpt">
+        Excerpt will go here
+      </div>
+      <div class="underline-on-hover">
+        Read more...
+      </div>
+    </a>
+  )))}
 </Layout>

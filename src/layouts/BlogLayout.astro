@@ -1,0 +1,8 @@
+---
+import Layout from "./Layout.astro";
+const {postTitle} = Astro.props;
+---
+
+<Layout title={`${postTitle} - Blog`}>
+  <slot/>
+</Layout>
