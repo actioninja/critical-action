@@ -2,26 +2,109 @@
 import Layout from "@layouts/Layout.astro";
 import {getCollection} from "astro:content";
 import Anchor from "@components/Anchor.astro";
+import { formatDate } from "@utils/dates";
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: {slug: entry.slug},
-    props: {entry},
-  }))
+  const blogEntries = (await getCollection('blog')).sort((a, b) => (
+    b.data.date - a.data.date
+  ));
+
+  return blogEntries.map((entry, i) => {
+    let prevEntry = blogEntries[i + 1];
+    let prevSlug;
+    let prevTitle;
+    let prevCounter = 1;
+    while (prevEntry) {
+      if (!prevEntry.data.draft) {
+        prevSlug = prevEntry.slug;
+        prevTitle = prevEntry.data.title;
+        break;
+      }
+      prevCounter++;
+      prevEntry = blogEntries[i + prevCounter];
+    }
+    let nextEntry = blogEntries[i - 1];
+    let nextSlug;
+    let nextTitle;
+    let nextCounter = 1;
+    while (nextEntry) {
+      if (!nextEntry.data.draft) {
+        nextSlug = nextEntry.slug;
+        nextTitle = nextEntry.data.title;
+        break;
+      }
+      nextCounter++;
+      nextEntry = blogEntries[i - nextCounter];
+    }
+
+    return {
+      params: {slug: entry.slug},
+      props: {
+        entry,
+        prevSlug,
+        prevTitle,
+        nextSlug,
+        nextTitle,
+      },
+    }
+  })
 }
 
-const {entry} = Astro.props;
+const {entry, nextSlug, nextTitle, prevSlug, prevTitle} = Astro.props;
+const hasNext = !!nextSlug;
+const hasPrev = !!prevSlug;
 
-const {title, description, date, category, tags, readTime} = entry.data;
 
-const {Content} = await entry.render();
+const { Content, components, remarkPluginFrontmatter } = await entry.render();
+const {title, description, date, editDate, category, tags} = entry.data;
+const { minutesRead } = remarkPluginFrontmatter;
+console.log(minutesRead)
 ---
+<style>
+  .next-prev-container {
+    display: flex;
+    text-align: center;
+  }
+  .next-prev-button {
+    flex-grow: 1;
+  }
 
+  .hidden {
+    visibility: hidden;
+  }
+</style>
 
 <Layout title={`${title} - Blog`}>
-  <Anchor href="/blog">Go Back</Anchor>
-  <h1>{title}</h1>
-  <Content/>
-  <Anchor href="/blog">Go Back</Anchor>
-  </Layoutu>
+  <header>
+    <h1>{title}</h1>
+    <h3>{description}</h3>
+    <div>Originally Published: {formatDate(date)}</div>
+    {editDate && <div>Last Edited: {formatDate(editDate)}</div>}
+    <div>Read time: {minutesRead}</div>
+  </header>
+  <article>
+    <Content components={{...components, a: Anchor}}/>
+  </article>
+  <div class="next-prev-container">
+    <div class:list={["next-prev-button", {hidden: !hasPrev}]}>
+      <Anchor href={`/blog/${prevSlug}`}>
+        <div>
+          {prevTitle}
+        </div>
+        <div>
+          {'<<'} Previous
+        </div>
+      </Anchor>
+    </div>
+    <div class:list={["next-prev-button", {hidden: !hasNext}]}>
+      <Anchor href={`/blog/${nextSlug}`}>
+        <div>
+          {nextTitle}
+        </div>
+        <div>
+          Next {'>>'}
+        </div>
+      </Anchor>
+    </div>
+  </div>
+  </Layout>

@@ -7,8 +7,17 @@ const {href} = Astro.props;
 <script>
   import tippy from "tippy.js";
 
-  tippy("[data-tippy-content]");
+  tippy("[data-tippy-content]", {
+    theme: 'mine'
+  });
 </script>
+<style is:global>
+  .tippy-box[data-theme~='mine'] {
+    background-color: var(--color-foreground);
+    color: var(--color-background);
+    padding: 10px;
+  }
+</style>
 
 <a href={href} data-tippy-content={href}>
   <slot/>

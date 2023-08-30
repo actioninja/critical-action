@@ -1,0 +1,46 @@
+---
+import SplitHeader from "@components/SplitHeader.astro";
+import {formatDate} from "@utils/dates";
+
+const { slug, data } = Astro.props;
+---
+<style lang="scss">
+  .container {
+    display: block;
+    margin: 20px 0;
+    text-decoration: none;
+    padding: 5px 0;
+    color: var(--color-foreground);
+
+    &:hover {
+      .underline-on-hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .title {
+    color: var(--color-foreground);
+    font-size: 35px;
+    text-decoration: none;
+  }
+
+  .excerpt {
+    padding: 10px;
+    color: var(--color-foreground);
+  }
+</style>
+
+<a href={"/blog/" + slug} class="container">
+  <SplitHeader>
+    <span class="title">{data.title}</span>
+    <span
+      slot="right-side">{formatDate(data.date)}</span>
+  </SplitHeader>
+  <div class="excerpt">
+    Excerpt will go here
+  </div>
+  <div class="underline-on-hover">
+    Read more...
+  </div>
+</a>

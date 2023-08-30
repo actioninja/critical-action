@@ -5,6 +5,66 @@ date: 2022-01-29T04:00:00-08:00
 category: programming
 draft: true
 ---
+# Framework
+
+So for a static site, why even use a framework? The simplest possible way to make a static site is to just write some
+raw html, and then upload that to something like GitHub pages.
+
+This is the go-to method that's worked for decades, and of course it's always an option for extremely simple webpages.
+The issue mostly comes from that I want to also have a blog (the one you're reading right now!), and blogs typically
+involve many pages with repetitive layout, as well as generally some desire for rich formatting and html is not the
+most attractive way of doing that.
+
+Markdown is much nicer, so ideally I want something that can process markdown files into a static site. It's trivial
+enough to load markdown files and then process them with something like remark, so built in support for markdown
+processing is a bonus but not a requirement.
+
+So let's go through some options that I tried or considered.
+
+## Gatsby
+
+Wow, a react-first static site generator?
+
+_Overcomplicated._
+
+Calling things overdesigned and overcomplicated in the React space is a bit of a clichéd criticism, but Gatsby is very
+much the bad kind of overcomplicated. Complexity is inevitable, but it should be a tradeoff. Ideally if you pull in a
+large complicated framework, it should do a lot of the heavy lifting with minimal trouble on your part.
+
+Why? GraphQL as an API spec was built to be able to minimize bandwidth and number of queries on a server. To let you
+query specifically for desired data out of one endpoint rather than go through multiple endpoints for one piece of data,
+as well as get only the data you want rather than a bunch of other stuff included along with it. I think by design an
+SSG framework shouldn't really need to worry too much about the load on what it's querying because...it's only being done
+once. Is it really that big of a deal if you get all the data of a markdown frontmatter?
+
+You may be thinking "if GraphQL is a good query language, what's the issue?" The issue stems from that
+
+Oh, now you have to write a custom Gatsby-specific query plugin just to be able to query this field as part of a
+
+I thought this was just normal for SSG frameworks until I tried
+
+## Next.js
+
+Maybe that complexity from Gatsby is rooted in React.
+
+## Solid.js
+
+Solid.js is super neat, and I've had my eye on for a while. Zero-runtime JSX preprocessor that compiles to raw dom
+operations? This sounds like Svelte but instead of templates you have real JSX. And that's kind of how it behaves in
+practice, I've experimented with it a bit but
+
+The primary issue here that lead to me not going with this one is that Solid.js is *very* immature. Immature enough to
+that the "all in one" SSG framework SolidStart is in the "technically functional" stage.
+
+Maybe a future option, but too immature for now.
+
+## Astro
+
+This one I was hesistant at first about. I very much am a True Believer in JSX, and also very much am a fan of the more
+"functional" reactive model of thinking of UIs as mappings of data to uis.
+
+However, a framework built around SSG as the primary, first class model of serving interfaces appealed.
+
 # Styling
 
 ## Color Scheme
@@ -55,9 +115,11 @@ to just automatically
 
 ## PostCSS: Somewhat of a deadend
 
-I had
+PostCSS
 
 Again, I'm probably just doing something wrong, but I was too unfamaliar with PostCSS and doing it without "CSS in JS"
 seemed like a bit of a waste.
 
 ## Sass: I already knew this one
+
+Thankfully,

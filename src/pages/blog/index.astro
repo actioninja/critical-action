@@ -2,10 +2,18 @@
 import Layout from "@layouts/Layout.astro";
 import SplitHeader from "@components/SplitHeader.astro";
 import {getCollection} from "astro:content";
+import { formatDate } from "@utils/dates";
+import BlogEntryListing from "../../components/blog/BlogEntryListing.astro";
 
 const blogEntries = await getCollection('blog', ({data}) => {
   return data.draft === false;
 });
+
+const sortedEntries = blogEntries.sort((a, b) => (
+  b.data.date - a.data.date
+))
+
+const first5 = sortedEntries.slice(0, 4);
 ---
 <style lang="scss">
   .entry-container {
@@ -48,20 +56,9 @@ const blogEntries = await getCollection('blog', ({data}) => {
   </header>
   <SplitHeader>
     <span>Recent Posts</span>
+    <a href="/blog/browse/1" slot="right-side">Browse</a>
   </SplitHeader>
-  {!blogEntries.length ? 'Nothing yet! Check back later.' : (blogEntries.map(({slug, data}) => (
-    <a href={"/blog/" + slug} class="entry-container">
-      <SplitHeader>
-        <span class="entry-title">{data.title}</span>
-        <span
-          slot="right-side">{`${data.date.toLocaleDateString('fr-CA')} ${data.date.toLocaleTimeString('en-US', {timeStyle: "short"})}`}</span>
-      </SplitHeader>
-      <div class="entry-excerpt">
-        Excerpt will go here
-      </div>
-      <div class="underline-on-hover">
-        Read more...
-      </div>
-    </a>
+  {!first5.length ? 'Nothing yet! Check back later.' : (blogEntries.map(({slug, data}) => (
+    <BlogEntryListing slug={slug} data={data} />
   )))}
 </Layout>

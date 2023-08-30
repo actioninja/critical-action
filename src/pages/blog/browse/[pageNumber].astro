@@ -1,0 +1,34 @@
+---
+import {getCollection} from "astro:content";
+import { chunks } from '@utils/arrays';
+import Layout from "@layouts/Layout.astro";
+import BlogEntryListing from "@components/blog/BlogEntryListing.astro";
+import BrowseNavigator from "@components/blog/BrowseNavigator.astro";
+export async function getStaticPaths() {
+  const blogEntries = (await getCollection('blog', ({data}) => {
+    return data.draft === false;
+  })).sort((a, b) => (
+    b.data.date - a.data.date
+  ));
+  const chunked = chunks(blogEntries, 10);
+  return chunked.map((chunk, i) => ({
+    params: {
+      pageNumber: i + 1,
+    },
+    props: {
+      chunk,
+      pageNumber: i + 1,
+      hasOlder: true,
+    }
+  }))
+}
+
+const { chunk, pageNumber, hasNewer, hasOlder } = Astro.props;
+---
+<Layout title=`Blog Archive Page ${pageNumber}`>
+  {chunk.map(({ slug, data }) => (
+    <BrowseNavigator pageNumber={pageNumber}/>
+    <BlogEntryListing slug={slug} data={data} />
+    <BrowseNavigator pageNumber={pageNumber}/>
+  ))}
+</Layout>

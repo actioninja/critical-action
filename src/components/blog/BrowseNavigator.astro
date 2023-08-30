@@ -1,0 +1,45 @@
+---
+import Anchor from "../Anchor.astro";
+const { pageNumber, hasOlder } = Astro.props;
+
+const nextPageNumber = pageNumber + 1;
+const previousPageNumber = pageNumber - 1;
+const hasNewer = pageNumber > 1;
+const noNav = !hasNewer && !hasOlder;
+---
+<style>
+  nav {
+    margin: 0.3em;
+    display: flex;
+    font-size: 3.0rem;
+  }
+
+  div {
+    flex-grow: 1;
+  }
+
+  .older {
+    text-align: right;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  .no-display {
+    display: none;
+  }
+</style>
+
+<nav class:list={[{ 'no-display': noNav }]}>
+  <div class:list={[{ hidden: !hasNewer}]}>
+    <Anchor href={`/blog/browse/${previousPageNumber}`}>
+      {'<<'} Newer
+    </Anchor>
+  </div>
+  <div class:list={["older", { hidden: !hasOlder }]}>
+    <Anchor href={`/blog/browse/${nextPageNumber}`}>
+      Older {'>>'}
+    </Anchor>
+  </div>
+</nav>
